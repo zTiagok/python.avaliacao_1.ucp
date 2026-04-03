@@ -5,29 +5,8 @@
 
 def main():
   answer: int = 0
-  students: list[dict] = [{
-    "name": "Tiago",
-    "grade1": 1,
-    "grade2": 2
-  },
-  {
-    "name": "Tiago 2",
-    "grade1": 5,
-    "grade2": 5
-  },
-  {
-    "name": "Alice",
-    "grade1": 5,
-    "grade2": 5
-  },
-  {
-    "name": "Laranja",
-    "grade1": 5,
-    "grade2": 5
-  },
-  ]
+  students: list[dict] = []
 
-  # Enquanto a resposta for menor que 1 ou maior que 5, será mostrado o print e o input.
   while (int(answer) != 5):
     print("\n1 - Cadastrar aluno\n" \
           "2 - Listar alunos\n" \
@@ -119,6 +98,14 @@ def writeFile(students: list[dict]):
   with open("students.txt", "w", encoding="utf-8") as file:
     file.write(str(students))
 
+def readFile():
+  try:
+    with open("students.txt", "r", encoding="utf-8") as file:
+      return file.read()
+    
+  except FileNotFoundError:
+    return []
+    
 
 # Inicia o programa principal.
 if __name__ == "__main__":
