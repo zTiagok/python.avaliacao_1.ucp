@@ -27,19 +27,25 @@ def main():
 
 def insertStudent(students: list[dict]):
   newName = input("\nNome do aluno: ")
+  error = False
 
+  for student in students:
+    if student["name"] == newName:
+      print("\nErro: Aluno já cadastrado.")
+      error = True
   
-  newGrade1 = input("Nota 1 do aluno: ")
-  newGrade2 = input("Nota 2 do aluno: ")
+  if not error:
+    newGrade1 = input("Nota 1 do aluno: ")
+    newGrade2 = input("Nota 2 do aluno: ")
 
-  # Adiciona as informações do aluno no array de objetos.
-  students.append({
-    "name": newName,
-    "grade1": float(newGrade1),
-    "grade2": float(newGrade2),
-    })
-  
-  writeFile(students)
+    # Adiciona as informações do aluno no array de objetos.
+    students.append({
+      "name": newName,
+      "grade1": float(newGrade1),
+      "grade2": float(newGrade2),
+      })
+    
+    writeFile(students)
 
 
 def listStudents(students: list[dict]) -> list:
