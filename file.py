@@ -39,14 +39,14 @@ def main():
 
     match(answer):
       case 1:
-        cadastrarAluno(students)
+        insertStudent(students)
       case 2:
-        listarAlunos(students)
+        listStudents(students)
       case 4:
-        procurarAluno(students)
+        searchStudent(students)
         
 
-def cadastrarAluno(students: list[dict]):
+def insertStudent(students: list[dict]):
   student_name = input("\nNome do aluno: ")
   student_grade_1 = input("Nota 1 do aluno: ")
   student_grade_2 = input("Nota 2 do aluno: ")
@@ -59,16 +59,16 @@ def cadastrarAluno(students: list[dict]):
     })
 
 
-def listarAlunos(students: list[dict]):
+def listStudents(students: list[dict]):
   # Adiciona um espaço para melhor visualização da listagem.
   print("\n")
 
   for student in students:
-    result = calcularMedia(student["grade1"], student["grade2"])
+    result = calculateAverage(student["grade1"], student["grade2"])
     print(f"Nome: {student["name"]} | Média: {result["average_grade"]} | Situação: {result["status"]}")
 
 
-def procurarAluno(students: list[dict]) -> str:
+def searchStudent(students: list[dict]) -> str:
   name = input("\nDigite o nome do aluno: ")
   search: list[dict] = []
 
@@ -81,10 +81,10 @@ def procurarAluno(students: list[dict]) -> str:
   if len(search) == 0:
     print("\nErro: Aluno(s) não encontrado(s).")
   else:
-    listarAlunos(search)
+    listStudents(search)
 
 
-def calcularMedia(grade1: float, grade2: float) -> dict:
+def calculateAverage(grade1: float, grade2: float) -> dict:
   average_grade = (grade1 + grade2) / 2
   status = None
 
@@ -99,8 +99,6 @@ def calcularMedia(grade1: float, grade2: float) -> dict:
     "status": status, 
     "average_grade": average_grade
   }
-
-
 
 
 # Inicia o programa principal.
