@@ -11,3 +11,9 @@ while (int(answer) < 1 or int(answer) > 5):
   "édia da turma\n4 - Buscar aluno por nome\n5 - Sair")
 
   answer = input("Selecione uma opção: ")
+
+  match(int(answer)):
+    case 5:
+      break
+    
+
