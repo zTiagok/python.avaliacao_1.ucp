@@ -62,8 +62,6 @@ def insertStudent(students: list[dict]):
 
 
 def listStudents(students: list[dict]) -> list:
-  # Adiciona um espaço para melhor visualização da listagem.
-  print("\n")
   studentList: list = []
 
   # Salva os estudantes em um array.
@@ -71,9 +69,14 @@ def listStudents(students: list[dict]) -> list:
     result = calculateAverage(student["grade1"], student["grade2"])
     studentList.append(f"Nome: {student["name"]} | Média: {result["average_grade"]} | Situação: {result["status"]}")
 
-  # Printa todos os alunos dentro do array.
-  for item in studentList:
-    print(item)
+  # Printa todos os alunos dentro do array caso não esteja vazio.
+  if len(studentList) > 0:
+    # Adiciona um espaço para melhor visualização da listagem.
+    print("\n")
+    for item in studentList:
+      print(item)
+  else:
+    print("\nErro: Aluno(s) não encontrado(s).")
 
   # Retorna o array.
   return studentList
