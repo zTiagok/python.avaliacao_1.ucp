@@ -77,7 +77,11 @@ def procurarAluno(students: list[dict]) -> str:
     if name.lower() in str(student["name"]).lower():
       search.append(student)
 
-  listarAlunos(search)
+  # Verifica o tamanho do array, caso seja 0 então mostrar erro.
+  if len(search) == 0:
+    print("\nErro: Aluno(s) não encontrado(s).")
+  else:
+    listarAlunos(search)
 
 
 def calcularMedia(grade1: float, grade2: float) -> dict:
