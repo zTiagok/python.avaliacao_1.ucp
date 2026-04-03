@@ -27,6 +27,7 @@ def cadastrarAluno(students: list[dict]):
   student_grade_1 = input("Nota 1 do aluno: ")
   student_grade_2 = input("Nota 2 do aluno: ")
 
+  # Adiciona as informações do aluno no array de objetos.
   students.append({
     "nome": student_name,
     "nota1": float(student_grade_1),
@@ -34,5 +35,6 @@ def cadastrarAluno(students: list[dict]):
     })
 
 
+# Inicia o programa principal.
 if __name__ == "__main__":
   main()
