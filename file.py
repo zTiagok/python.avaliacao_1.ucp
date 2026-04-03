@@ -57,15 +57,26 @@ def insertStudent(students: list[dict]):
     "grade1": float(student_grade_1),
     "grade2": float(student_grade_2),
     })
+  
+  writeFile(students)
 
 
-def listStudents(students: list[dict]):
+def listStudents(students: list[dict]) -> list:
   # Adiciona um espaço para melhor visualização da listagem.
   print("\n")
+  studentList: list = []
 
+  # Salva os estudantes em um array.
   for student in students:
     result = calculateAverage(student["grade1"], student["grade2"])
-    print(f"Nome: {student["name"]} | Média: {result["average_grade"]} | Situação: {result["status"]}")
+    studentList.append(f"Nome: {student["name"]} | Média: {result["average_grade"]} | Situação: {result["status"]}")
+
+  # Printa todos os alunos dentro do array.
+  for item in studentList:
+    print(item)
+
+  # Retorna o array.
+  return studentList
 
 
 def searchStudent(students: list[dict]) -> str:
@@ -99,6 +110,11 @@ def calculateAverage(grade1: float, grade2: float) -> dict:
     "status": status, 
     "average_grade": average_grade
   }
+
+
+def writeFile(students: list[dict]):
+  with open("students.txt", "w", encoding="utf-8") as file:
+    file.write(str(students))
 
 
 # Inicia o programa principal.
