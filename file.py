@@ -5,9 +5,7 @@
 
 def main():
   answer: int = 0
-  students: list[dict] = []
-
-  print(readFile())
+  students: list[dict] = readFile()
 
   while (int(answer) != 5):
     print("\n1 - Cadastrar aluno\n" \
@@ -28,15 +26,17 @@ def main():
         
 
 def insertStudent(students: list[dict]):
-  student_name = input("\nNome do aluno: ")
-  student_grade_1 = input("Nota 1 do aluno: ")
-  student_grade_2 = input("Nota 2 do aluno: ")
+  newName = input("\nNome do aluno: ")
+
+  
+  newGrade1 = input("Nota 1 do aluno: ")
+  newGrade2 = input("Nota 2 do aluno: ")
 
   # Adiciona as informações do aluno no array de objetos.
   students.append({
-    "name": student_name,
-    "grade1": float(student_grade_1),
-    "grade2": float(student_grade_2),
+    "name": newName,
+    "grade1": float(newGrade1),
+    "grade2": float(newGrade2),
     })
   
   writeFile(students)
@@ -48,7 +48,7 @@ def listStudents(students: list[dict]) -> list:
   # Salva os estudantes em um array.
   for student in students:
     result = calculateAverage(student["grade1"], student["grade2"])
-    studentList.append(f"Nome: {student["name"]} | Média: {result["average_grade"]} | Situação: {result["status"]}")
+    studentList.append(f"Nome: {student["name"]} | Média: {result["averageGrade"]} | Situação: {result["status"]}")
 
   # Printa todos os alunos dentro do array caso não esteja vazio.
   if len(studentList) > 0:
@@ -80,26 +80,26 @@ def searchStudent(students: list[dict]) -> str:
 
 
 def calculateAverage(grade1: float, grade2: float) -> dict:
-  average_grade = (grade1 + grade2) / 2
+  averageGrade = (float(grade1) + float(grade2)) / 2
   status = None
 
-  if (average_grade >= 7):
+  if (averageGrade >= 7):
     status = "Aprovado"
-  elif (average_grade >= 5 and average_grade < 7):
+  elif (averageGrade >= 5 and averageGrade < 7):
     status = "Recuperação"
   else:
     status = "Reprovado"
 
   return {
     "status": status, 
-    "average_grade": average_grade
+    "averageGrade": averageGrade
   }
 
 
 def writeFile(students: list[dict]):
   with open("students.txt", "w", encoding="utf-8") as file:
     for student in students:
-      line = f"{student["name"]},{student["grade1"]},{student["grade2"]}"
+      line = f"{student["name"]},{student["grade1"]},{student["grade2"]}\n"
       file.write(line)
 
 
