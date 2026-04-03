@@ -20,7 +20,9 @@ def main():
     match(answer):
       case 1:
         cadastrarAluno(students)
-
+      case 2:
+        listarAlunos(students)
+        
 
 def cadastrarAluno(students: list[dict]):
   student_name = input("\nNome do aluno: ")
@@ -29,10 +31,19 @@ def cadastrarAluno(students: list[dict]):
 
   # Adiciona as informações do aluno no array de objetos.
   students.append({
-    "nome": student_name,
-    "nota1": float(student_grade_1),
-    "nota2": float(student_grade_2),
+    "name": student_name,
+    "grade1": float(student_grade_1),
+    "grade2": float(student_grade_2),
     })
+
+
+def listarAlunos(students: list[dict]):
+  # Adiciona um espaço para melhor visualização da listagem.
+  print("\n")
+
+  for student in students:
+    average_grade = (student["grade1"] + student["grade2"]) / 2
+    print(f"Nome: {student["name"]} | Média: {average_grade} | Situação: null")
 
 
 # Inicia o programa principal.
