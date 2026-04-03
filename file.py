@@ -7,6 +7,8 @@ def main():
   answer: int = 0
   students: list[dict] = []
 
+  print(readFile())
+
   while (int(answer) != 5):
     print("\n1 - Cadastrar aluno\n" \
           "2 - Listar alunos\n" \
@@ -96,15 +98,29 @@ def calculateAverage(grade1: float, grade2: float) -> dict:
 
 def writeFile(students: list[dict]):
   with open("students.txt", "w", encoding="utf-8") as file:
-    file.write(str(students))
+    for student in students:
+      line = f"{student["name"]},{student["grade1"]},{student["grade2"]}"
+      file.write(line)
+
 
 def readFile():
+  students = []
+
   try:
     with open("students.txt", "r", encoding="utf-8") as file:
-      return file.read()
+      for line in file:
+        name, grade1, grade2 = line.strip().split(",")
+
+        students.append({
+          "name": name,
+          "grade1": grade1,
+          "grade2": grade2,
+        })
     
   except FileNotFoundError:
     return []
+  
+  return students
     
 
 # Inicia o programa principal.
