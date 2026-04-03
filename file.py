@@ -42,8 +42,25 @@ def listarAlunos(students: list[dict]):
   print("\n")
 
   for student in students:
-    average_grade = (student["grade1"] + student["grade2"]) / 2
-    print(f"Nome: {student["name"]} | Média: {average_grade} | Situação: null")
+    result = calcularMedia(student["grade1"], student["grade2"])
+    print(f"Nome: {student["name"]} | Média: {result["average_grade"]} | Situação: {result["status"]}")
+
+
+def calcularMedia(grade1: float, grade2: float) -> dict:
+  average_grade = (grade1 + grade2) / 2
+  status = None
+
+  if (average_grade >= 7):
+    status = "Aprovado"
+  elif (average_grade >= 5 and average_grade < 7):
+    status = "Recuperação"
+  else:
+    status = "Reprovado"
+
+  return {
+    "status": status, 
+    "average_grade": average_grade
+  }
 
 
 # Inicia o programa principal.
