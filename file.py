@@ -5,7 +5,27 @@
 
 def main():
   answer: int = 0
-  students: list[dict] = []
+  students: list[dict] = [{
+    "name": "Tiago",
+    "grade1": 1,
+    "grade2": 2
+  },
+  {
+    "name": "Tiago 2",
+    "grade1": 5,
+    "grade2": 5
+  },
+  {
+    "name": "Alice",
+    "grade1": 5,
+    "grade2": 5
+  },
+  {
+    "name": "Laranja",
+    "grade1": 5,
+    "grade2": 5
+  },
+  ]
 
   # Enquanto a resposta for menor que 1 ou maior que 5, será mostrado o print e o input.
   while (int(answer) != 5):
@@ -22,6 +42,8 @@ def main():
         cadastrarAluno(students)
       case 2:
         listarAlunos(students)
+      case 4:
+        procurarAluno(students)
         
 
 def cadastrarAluno(students: list[dict]):
@@ -46,6 +68,18 @@ def listarAlunos(students: list[dict]):
     print(f"Nome: {student["name"]} | Média: {result["average_grade"]} | Situação: {result["status"]}")
 
 
+def procurarAluno(students: list[dict]) -> str:
+  name = input("\nDigite o nome do aluno: ")
+  search: list[dict] = []
+
+  # Procura e lista todos os nomes no range da procura.
+  for student in students:
+    if name.lower() in str(student["name"]).lower():
+      search.append(student)
+
+  listarAlunos(search)
+
+
 def calcularMedia(grade1: float, grade2: float) -> dict:
   average_grade = (grade1 + grade2) / 2
   status = None
@@ -61,6 +95,8 @@ def calcularMedia(grade1: float, grade2: float) -> dict:
     "status": status, 
     "average_grade": average_grade
   }
+
+
 
 
 # Inicia o programa principal.
